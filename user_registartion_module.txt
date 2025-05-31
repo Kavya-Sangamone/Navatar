@@ -1,0 +1,13 @@
+User Registration Module
+Purpose: Allows new users (e.g., doctors, nurses, admins) to register in the Navatar system via the web interface, creating an account to access features like booking and controlling the Navatar robot.
+Fields Required:
+Full Name: To identify the user . Stored as user_name in the users table.
+Email: Unique identifier for login and notifications. Stored as email.
+Password: For secure login, hashed before storage . Stored as password.
+Mobile Number: For contact and verification . Stored as mobileno.
+Role: To assign user type (e.g., "doctor", "nurse"). Stored as role. 
+Company ID: Links the user to a hospital/company . Stored as company_id, referencing the company table.
+Storage: These fields are stored in the users table in MySQL, with user_id as an auto-incremented primary key (e.g., user_id: 1).
+
+
+

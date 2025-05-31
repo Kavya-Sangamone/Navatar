@@ -1,0 +1,42 @@
+What is WebRTC? 
+WebRTC is built into modern web browsers like Chrome. It allows two browsers to connect directly without a server. You can share video, audio, or files with no limits, all out of the box.
+
+  How does it work?    
+When you transfer data online, protocols like TCP and UDP are used. TCP ensures no data is lost, like when you send a WhatsApp message or load google.com—it’s reliable. UDP, used in video calls or live streams (e.g., YouTube, Zoom), is faster but less reliable, so you might notice lag or dropped words. WebRTC uses UDP for speed.
+
+  Connecting Browsers:    
+To connect two browsers, each needs the other’s public IP address (like a phone number). Your device knows its private IP but not its public IP. A   STUN server   helps by telling your device its public IP. It’s like asking someone, “What’s my nickname outside?” Once both devices know their public IPs, they share them through   signaling  .
+
+  Signaling:    
+Signaling exchanges session descriptions (SDPs), which include IPs and connection details. You could share SDPs via WhatsApp or email, but usually, a simple socket server automates this. The server only passes SDPs—it doesn’t store data. Once SDPs are exchanged, the browsers connect directly for video calls, chats, or file transfers.
+
+  WebRTC Process:    
+1.   Initialization  : Your device asks a STUN server for its public IP.  
+2.   Signaling  : SDPs are exchanged to set up the connection.  
+3.   Data Transfer  : You can now share video, audio, or files.
+
+  Limitations:    
+WebRTC’s P2P (peer-to-peer) setup is great for two people but doesn’t support more. A third person can’t join. For multiple users, other setups like   Mesh   (every device connects to all others) or   SFU   (Selective Forwarding Unit, used by Google Meet/Zoom) are used. Mesh is complex and doesn’t scale well. SFU uses a server to combine video streams from multiple clients into one, making it ideal for group calls.
+
+  Want to Build Your Own App?    
+Check out my website, piyushgarg.dev, for a detailed WebRTC series with code examples. You’ll see how to create an app showing online users and connecting for video calls. If you want a video tutorial on this with React or HTML, comment below. Like and subscribe if you enjoyed this!
+
+
+
+Front End-React Native
+Backend-Django
+
+auth->doctor
+logic of booking
+controlling the robot via joysticks
+
+
+create the backend logic
+
+
+
+
+
+webRTC-data loss
+
+

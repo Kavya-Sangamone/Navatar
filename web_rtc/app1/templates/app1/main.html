@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>WebRTC Chat</title>
+</head>
+<body>
+  <video id="localVideo" autoplay muted></video>
+  <video id="remoteVideo" autoplay></video>
+
+  <script>
+    const roomName = "{{ room_name }}";
+    const ws = new WebSocket(`ws://${window.location.host}/ws/chat/${roomName}/`);
+
+    let localStream;
+    let pc = new RTCPeerConnection();
+
+    navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => {
+      document.getElementById('localVideo').srcObject = stream;
+      localStream = stream;
+      stream.getTracks().forEach(track => pc.addTrack(track, stream));
+    });
+
+    pc.ontrack = event => {
+      document.getElementById('remoteVideo').srcObject = event.streams[0];
+    };
+
+    pc.onicecandidate = event => {
+      if (event.candidate) {
+        ws.send(JSON.stringify({ type: 'candidate', candidate: event.candidate }));
+      }
+    };
+
+    ws.onmessage = async (e) => {
+      const data = JSON.parse(e.data);
+
+      if (data.type === 'offer') {
+        await pc.setRemoteDescription(new RTCSessionDescription(data.offer));
+        const answer = await pc.createAnswer();
+        await pc.setLocalDescription(answer);
+        ws.send(JSON.stringify({ type: 'answer', answer: answer }));
+      } else if (data.type === 'answer') {
+        await pc.setRemoteDescription(new RTCSessionDescription(data.answer));
+      } else if (data.type === 'candidate') {
+        await pc.addIceCandidate(new RTCIceCandidate(data.candidate));
+      }
+    };
+
+    // Start call if first user
+    ws.onopen = async () => {
+      const offer = await pc.createOffer();
+      await pc.setLocalDescription(offer);
+      ws.send(JSON.stringify({ type: 'offer', offer: offer }));
+    };
+  </script>
+</body>
+</html>

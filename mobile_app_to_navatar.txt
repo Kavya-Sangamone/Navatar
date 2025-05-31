@@ -1,0 +1,105 @@
+
+
+  Mobile App (to control the car)
+  Linode Server (with a public IP)
+  Raspberry Pi (connected to the car wheels)
+  Wheels + Motor Driver
+  Ngrok (to connect your Pi to the internet)
+
+
+
+You tap "Forward" in the mobile app from home →
+That command goes to the Raspberry Pi in college →
+Raspberry Pi makes the car move forward.
+
+
+Mobile App → Linode Server → Raspberry Pi (via Ngrok) → Motor Driver → Wheels move
+
+
+   🔧 What You Already Have
+
+    Raspberry Pi
+    Linode Server (public IP like  172.232.193.93 )
+    4 wheels + motor driver
+    Mobile device
+    Internet connection
+    Ngrok (we'll install it)
+
+    🟩 Step 1:   Set up Raspberry Pi  
+
+1. Connect wheels and motor driver to Raspberry Pi using GPIO pins.
+2. Install Python and Flask:
+
+    
+   sudo apt update
+   sudo apt install python3 pip
+   pip3 install flask
+      
+3. Create a small   Flask server   on the Pi (to listen for commands like "forward").
+
+
+🟨 Step 2:   Install Ngrok on Raspberry Pi  
+
+1. Go to [https://ngrok.com](https://ngrok.com), create a free account.
+2. Download Ngrok on Pi and install:
+
+   wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok stable linux arm.zip
+   unzip ngrok stable linux arm.zip
+  
+3. Connect Ngrok to your account:
+    
+   ./ngrok authtoken YOUR_TOKEN_HERE
+      
+4. Start Ngrok:
+
+   ./ngrok http 5000
+      
+     Now Ngrok gives you a public URL (like  https://abc123.ngrok.io )
+
+   
+
+🟧 Step 3:   Create API on Linode Server  
+
+1. Install Python, Django, and Django REST Framework:
+
+    
+   sudo apt update
+   sudo apt install python3 pip
+   pip3 install django djangorestframework
+      
+2. Create a Django project and add a simple API that:
+
+     Receives POST requests from the mobile app
+     Forwards the command to the Ngrok URL (Raspberry Pi)
+
+   
+ 🟥 Step 4:   Mobile App  
+
+1. Build a mobile app using   Flutter   or   Android Studio  .
+2. The app sends commands (like "forward", "stop", etc.) to your   Linode server IP   (e.g.,  http://172.232.193.93/command ).
+3. Linode then forwards this command to Raspberry Pi using the Ngrok URL.
+
+   
+
+  
+
+1.   Mobile app   sends:
+
+      
+   POST http://172.232.193.93/command
+   Body: { "command": "forward" }
+      
+
+2.   Django on Linode   receives it and sends:
+
+      
+   POST https://abc123.ngrok.io/move
+   Body: { "command": "forward" }
+      
+
+3.   Raspberry Pi   gets it and turns the motors on.
+
+   
+
+     
+

@@ -1,0 +1,8 @@
+2. User Authentication Module
+ Verifies user credentials during login via the web interface, ensuring only authorized users can access the system and control the Navatar.
+Fields Required:
+Email: To identify the user . Matches the email field in the users table.
+Password: To authenticate the user . Compared against the hashed password in the users table.
+
+After successful authentication, the system retrieves the user’s role and user_id from the users table to determine access permissions (e.g., only doctors can book sessions and control the Navatar).
+

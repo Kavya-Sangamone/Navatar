@@ -1,0 +1,32 @@
+Each floor has one navatar .
+All navatar is handled by our team(let us consider now only one admin).
+Which floor has which navatar .
+Each navatar has its navatar_id and admin_id.
+
+Navatar Table:
+navatar_id (Primary Key): Unique identifier for each Navatar (e.g., 1, 2, 3).
+floor_number (String/Integer): The floor assigned to this Navatar (e.g., "Floor 1", "Floor 2").
+navatar_name:Name of the navatar
+admin_id : References the admins table, linking the Navatar to the admin managing it.-Foreign Key
+company_id : Links the Navatar to a hospital/company , referencing the company table.Foreign Key
+
+Admin Table:
+admin_id (Primary Key): Unique identifier for the admin 
+admin_email (String): Email of the admin 
+company_id (Foreign Key): Links the admin to the company they manage.
+navatar_id:which navatar admin handles
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

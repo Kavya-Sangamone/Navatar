@@ -1,0 +1,34 @@
+Each hospital has id 
+
+
+user registartion
+user name,user email,role,contact number, user_id after registartion password setting 
+after registration it will go to the tablle
+table design -user id is primary key
+
+in booking page :
+useremail and password
+
+for scheduling navatar .
+date , time ,duration, based on this booking status.
+if not active 
+click the booking button.
+
+After that 
+giving credential qr ,upi,gpay everytipe of pay 
+razorpay
+ payment done.payment reference should e stored in database.
+
+
+
+
+CREATE TABLE navatar (
+    navatar_id SERIAL PRIMARY KEY,
+    company_id INTEGER NOT NULL,
+    navatar_name VARCHAR(100) NOT NULL,
+    floor_number VARCHAR(50) NOT NULL,
+    admin_id INTEGER,
+    status VARCHAR(20) DEFAULT 'idle',
+    battery_level INTEGER DEFAULT 100,
+   
+);
