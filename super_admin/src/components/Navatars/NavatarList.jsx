@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import API from '../../api';
+import API from '../../../../navatar-phase1/frontend/src/api';
 import './Navatars.css';
 
 const NavatarList = () => {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import API from '../api';
+import API from '../../../navatar-phase1/frontend/src/api';
 import './AddCompany.css';
 
 const AddCompany = () => {
