@@ -12,12 +12,12 @@ function App() {
       <div className="app">
         <Sidebar />
         <main className="main-content">
-          <Routes>
+      <Routes>
             <Route path="/" element={<Navigate to="/companies" replace />} />
             <Route path="/companies" element={<CompanyList />} />
             <Route path="/navatars" element={<NavatarList />} />
             <Route path="/admins" element={<AdminList />} />
-          </Routes>
+      </Routes>
         </main>
       </div>
     </Router>
