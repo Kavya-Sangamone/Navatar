@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.database import Base, engine
 from app import models
 
-from app.routers import company, navatar, user, booking
+from app.routers import company, navatar, user, booking, admin
 
 app = FastAPI(
     title="Project API",
@@ -12,6 +12,13 @@ app = FastAPI(
 )
 origins = [
     "http://localhost:3000", 
+   'http://localhost:5174',
+   'http://localhost:5173',
+   'http://localhost:5172',
+   'http://localhost:5171',
+   'http://localhost:5170',
+   'http://localhost:5169',
+   'http://localhost:5168',
 ]
 app.add_middleware(
     CORSMiddleware,
@@ -25,6 +32,7 @@ app.include_router(company.router, prefix="/company", tags=["Company"])
 app.include_router(navatar.router, prefix="/navatar", tags=["Navatar"])
 app.include_router(user.router, prefix="/user", tags=["User"])
 app.include_router(booking.router, prefix="/booking", tags=["Booking"])
+app.include_router(admin.router, prefix="/admin", tags=["Admin"])
 
 # Create DB tables at startup (optional)
 @app.on_event("startup")

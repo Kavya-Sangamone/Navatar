@@ -14,15 +14,15 @@ function App() {
       <Routes>
         
         {/* Public routes */}
-        <Route path="/login" element={<AllLogin />} />
+        <Route path="/" element={<AllLogin />} />
         <Route path="/user" element={<LandingPage />} /> {/* Accessible without auth */}
 
         {/* Protected routes */}
         {isAuthenticated && (
           <>
-            <Route path="/" element={<LandingPage />} />
+            
             <Route path="/dashboard" element={<Home />} />
-            <Route path="/companies" element={<AddCompany />} />
+            <Route path="/AddCompany" element={<AddCompany />} />
           </>
         )}
 

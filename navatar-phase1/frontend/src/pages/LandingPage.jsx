@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/common/Navbar';
 import './LandingPage.css';
-import '../components/common/Navbar.css'
 import logo from "../assets/logo.png";  // Clean up the comment
 
 function LandingPage() {

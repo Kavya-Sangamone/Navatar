@@ -7,3 +7,10 @@ def create_navatar(db: Session, navatar: schemas.NavatarCreate):
     db.commit()
     db.refresh(db_navatar)
     return db_navatar
+def get_navatars(db: Session):
+    return db.query(models.Navatar).all()
+
+def get_navatar(db: Session, navatar_id: int):
+    return db.query(models.Navatar).filter(models.Navatar.id == navatar_id).first()
+
+

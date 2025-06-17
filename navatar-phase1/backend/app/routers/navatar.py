@@ -18,4 +18,10 @@ def create_navatar(navatar: schemas.NavatarCreate, db: Session = Depends(get_db)
 
 @router.get("/")
 def read_navatars(db: Session = Depends(get_db)):
-    return {"message": "List navatars endpoint"}
+    return crud.navatar.get_navatars(db)
+
+@router.get("/{navatar_id}")
+def read_navatar(navatar_id: int, db: Session = Depends(get_db)):
+    return crud.navatar.get_navatar(db, navatar_id)
+
+

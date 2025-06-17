@@ -23,3 +23,7 @@ def get_companies(db: Session = Depends(get_db)):
 @router.get("/")
 def read_companies(db: Session = Depends(get_db)):
     return {"message": "List companies endpoint"}
+
+@router.delete("/{company_id}")
+def delete_company(company_id: int, db: Session = Depends(get_db)):
+    return crud.company.delete_company(db, company_id)

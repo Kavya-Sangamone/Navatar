@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 from typing import Optional
 
 class CompanyCreate(BaseModel):
@@ -21,7 +21,7 @@ class AdminCreate(BaseModel):
     company_id: int
     navatar_id: int
     admin_name: str
-    admin_email: str
+    admin_email: EmailStr
 
 class UserBase(BaseModel):
     email: str

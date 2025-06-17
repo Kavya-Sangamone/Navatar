@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import './Home.css';
 import { Link } from 'react-router-dom';
+import { AddCompany } from './AddCompany';
 
 const Home = () => {
   const { user, logout } = useAuth();
@@ -58,16 +59,19 @@ const Home = () => {
       </div>
       <div>
           <button className="add-company-btn">
-            <Link to="/companies">Add Company</Link>
+            <Link to="/AddCompany">Add Company</Link>
           </button>
         </div>
 
       {/* Main Content */}
       <div className="main-content">
       <div className="top-bar">
+      {isAuthenticated && user?.role === 'super_admin' && (
       <button className="add-company-btn">
-        <Link to="/companies">Add Company</Link>
+        <Link to="/AddCompany">Add Company</Link>
       </button>
+)}
+
     </div>
         <h3>Registered Companies</h3>
         {loading && <p>Loading...</p>}
